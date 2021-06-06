@@ -1,4 +1,7 @@
 package Base;
+
+import java.util.Scanner;
+
 /*
 UCF COP3330 Summer 2021 Assignment 1 Solution
 Copyright 2021 Alek Dussuau
@@ -34,7 +37,35 @@ Alter the program so that an indeterminate number of items can be entered. The t
  no more items to be entered.
  */
 public class App {
+    static Scanner input = new Scanner(System.in);
+
     public static void main(String[] args){
-        
+        //inputs
+        double product1 = item_checkout(1);
+        double product2 = item_checkout(2);
+        double product3 = item_checkout(3);
+
+        //math
+        double subtotal = product1 + product2 + product3;
+        double tax = subtotal * .055;
+        double total = subtotal + tax;
+
+        //outputs
+        System.out.printf("Subtotal: $%.2f\nTax: $%.2f\nTotal: $%.2f",subtotal,tax,total);
+    }
+
+    private static double item_checkout(int num){
+        //inputs
+        System.out.printf("Enter the price of item %d: ",num);
+        String s_price = input.nextLine();
+        System.out.printf("Enter the quantity of item %d: ",num);
+        String s_quantity = input.nextLine();
+
+        //parsing
+        double temp_price = Integer.parseInt(s_price);
+        int temp_quantity = Integer.parseInt(s_quantity);
+
+        //math
+        return temp_price * temp_quantity;
     }
 }
